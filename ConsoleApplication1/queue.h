@@ -6,8 +6,8 @@ typedef struct {
 } QueueNode;
 
 typedef struct {
-	struct QueueNode** head;
-	struct QueueNode** back;
+	struct QueueNode* head;
+	struct QueueNode* back;
 } Queue;
 
 void enqueue(Queue** const queue, const int value);
