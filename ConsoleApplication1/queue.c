@@ -7,6 +7,7 @@ void enqueue(Queue** const queue, const int value)
 	next->value = value;
 	next->next = NULL;
 	QueueNode** head = (*queue)->head;
+	(*head)->next = next;
 	*head = next;
 }
 
