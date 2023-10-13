@@ -22,12 +22,20 @@ void dequeue(Queue** queue)
 int front(Queue *queue)
 {
     QueueNode *head = queue->head;
+    if (head == NULL)
+    {
+        return NULL;
+    }
     return head->value;
 }
 
 int back(Queue *queue)
 {
     QueueNode *back = queue->back;
+    if (back == NULL)
+    {
+        return NULL;
+    }
     return back->value;
 }
 
