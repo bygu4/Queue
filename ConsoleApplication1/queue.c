@@ -20,7 +20,39 @@ void dequeue(Queue* queue)
 	free(back);
 }
 
+
 bool isEmpty(Queue* queue)
 {
 	return queue->head == NULL && queue;
+}
+
+int front(Queue *queue)
+{
+    QueueNode *head = queue->head;
+    if (head == NULL)
+    {
+        return NULL;
+    }
+    return head->value;
+}
+
+int back(Queue *queue)
+{
+    QueueNode *back = queue->back;
+    if (back == NULL)
+    {
+        return NULL;
+    }
+    return back->value;
+}
+
+void printQueue(Queue* queue)
+{
+    QueueNode* current = (queue)->back;
+    while (current != NULL)
+    {
+        int value = current->value;
+        printf("%d\n", value);
+        QueueNode* current = current->next;
+    } 
 }
