@@ -1,20 +1,24 @@
 #include "queue.h"
-#include <stdlib.h>
 
-void enqueue(Queue** const queue, const int value)
-{
-	QueueNode* next = malloc(sizeof(QueueNode));
-	next->value = value;
-	next->next = NULL;
-	QueueNode** head = (*queue)->head;
-	(*head)->next = next;
-	*head = next;
-}
+#include <stdio.h>
 
-void dequeue(Queue** queue)
+typedef struct {
+	int value;
+	struct QueueNode* next;
+} QueueNode;
+
+typedef struct {
+	struct QueueNode* head;
+	struct QueueNode* back;
+} Queue;
+
+void printQueue(Queue** queue)
 {
-	QueueNode** back = (*queue)->back;
-	QueueNode* next = (*back)->next;
-	(*queue)->back = &next;
-	free(back);
+    QueueNode* current = (*queue)->back;
+    while (current != NULL)
+    {
+        int value = current->value;
+        printf("%d\n", value);
+        QueueNode* current = current->next;
+    } 
 }
