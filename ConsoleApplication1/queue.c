@@ -19,9 +19,9 @@ void dequeue(Queue** queue)
 	free(back);
 }
 
-void printQueue(Queue** queue)
+void printQueue(Queue* queue)
 {
-    QueueNode* current = (*queue)->back;
+    QueueNode* current = (queue)->back;
     while (current != NULL)
     {
         int value = current->value;

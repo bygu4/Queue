@@ -12,5 +12,5 @@ typedef struct {
 
 void enqueue(Queue** const queue, const int value);
 void dequeue(Queue** const queue);
-void printQueue(Queue** queue)
+void printQueue(Queue* queue)
 
