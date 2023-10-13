@@ -30,3 +30,14 @@ int back(Queue *queue)
     QueueNode *back = queue->back;
     return back->value;
 }
+
+void printQueue(Queue* queue)
+{
+    QueueNode* current = (queue)->back;
+    while (current != NULL)
+    {
+        int value = current->value;
+        printf("%d\n", value);
+        QueueNode* current = current->next;
+    } 
+}
