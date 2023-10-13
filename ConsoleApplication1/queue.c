@@ -19,6 +19,18 @@ void dequeue(Queue** queue)
 	free(back);
 }
 
+int front(Queue *queue)
+{
+    QueueNode *head = queue->head;
+    return head->value;
+}
+
+int back(Queue *queue)
+{
+    QueueNode *back = queue->back;
+    return back->value;
+}
+
 void printQueue(Queue* queue)
 {
     QueueNode* current = (queue)->back;
