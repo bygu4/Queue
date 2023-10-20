@@ -1,15 +1,7 @@
 #pragma once
 #include <stdbool.h>
 
-typedef struct {
-	int value;
-	struct QueueNode* next;
-} QueueNode;
-
-typedef struct {
-	struct QueueNode* head;
-	struct QueueNode* back;
-} Queue;
+typedef struct Queue Queue;
 
 Queue* createQueue(void);
 bool isEmpty(const Queue* const queue);
