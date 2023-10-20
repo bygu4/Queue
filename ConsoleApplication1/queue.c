@@ -1,31 +1,72 @@
 #include "queue.h"
 #include <stdlib.h>
-#include <stdbool.h>
+#include <stdio.h>
 
-void enqueue(Queue *const queue, const int value)
+typedef struct {
+    int value;
+    struct QueueNode* next;
+} QueueNode;
+
+struct Queue {
+    struct QueueNode* head;
+    struct QueueNode* back;
+};
+
+Queue* createQueue(void)
 {
-    QueueNode *next = malloc(sizeof(QueueNode));
+    Queue* queue = malloc(sizeof(Queue));
+    if (queue == NULL)
+    {
+        return NULL;
+    }
+    queue->head = NULL;
+    queue->back = NULL;
+    return queue;
+}
+
+bool isEmpty(const Queue* const queue)
+{
+    return queue->head == NULL;
+}
+
+bool enqueue(Queue* const queue, const int value)
+{
+    QueueNode* next = malloc(sizeof(QueueNode));
+    if (next == NULL)
+    {
+        return true;
+    }
     next->value = value;
     next->next = NULL;
-    QueueNode *head = queue->head;
+    if (isEmpty(queue))
+    {
+        queue->head = next;
+        queue->back = next;
+        return false;
+    }
+    QueueNode* head = queue->head;
     head->next = next;
     head = next;
+    return false;
 }
 
-void dequeue(Queue *queue)
+void dequeue(Queue* const queue)
 {
-    QueueNode *back = queue->back;
-    QueueNode *next = back->next;
-    queue->back = next;
+    if (isEmpty(queue))
+    {
+        return;
+    }
+    QueueNode* back = queue->back;
+    QueueNode* next = back->next;
     free(back);
+    if (queue->back == queue->head)
+    {
+        queue->head = next;
+    }
+    queue->back = next;
 }
 
-bool isEmpty(Queue *queue)
-{
-    return queue->head == NULL && queue;
-}
-
-int front(Queue *queue)
+int front(const Queue* const queue)
 {
     QueueNode *head = queue->head;
     if (head == NULL)
@@ -35,7 +76,7 @@ int front(Queue *queue)
     return head->value;
 }
 
-int back(Queue *queue)
+int back(const Queue* const queue)
 {
     QueueNode *back = queue->back;
     if (back == NULL)
@@ -45,7 +86,17 @@ int back(Queue *queue)
     return back->value;
 }
 
-void printQueue(Queue *queue)
+void freeQueue(Queue** const queue)
+{
+    while (!isEmpty(*queue))
+    {
+        dequeue(*queue);
+    }
+    free(*queue);
+    *queue = NULL;
+}
+
+void printQueue(const Queue* const queue)
 {
     QueueNode *current = (queue)->back;
     while (current != NULL)
@@ -184,6 +235,3 @@ bool testDequeue(void)
 
 
 }
-
-
-
