@@ -2,6 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct {
+    int value;
+    struct QueueNode* next;
+} QueueNode;
+
+struct Queue {
+    struct QueueNode* head;
+    struct QueueNode* back;
+};
+
 Queue* createQueue(void)
 {
     Queue* queue = malloc(sizeof(Queue));
@@ -16,7 +26,7 @@ Queue* createQueue(void)
 
 bool isEmpty(const Queue* const queue)
 {
-    return queue->head == NULL && queue->back == NULL;
+    return queue->head == NULL;
 }
 
 bool enqueue(Queue* const queue, const int value)
@@ -94,4 +104,5 @@ void freeQueue(Queue** const queue)
         dequeue(*queue);
     }
     free(*queue);
+    *queue = NULL;
 }

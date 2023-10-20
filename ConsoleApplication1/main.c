@@ -10,8 +10,6 @@ int main(void)
 		printf("An error occured");
 		return -1;
 	}
-	queue->back = NULL;
-	queue->head = NULL;
 	enqueue(queue, 1);
 	printf("%d\n", back(queue));
 	enqueue(queue, 2);
@@ -20,6 +18,8 @@ int main(void)
 	printf("front: %d\n", front(queue));
 	printf("back: %d\n", back(queue));
 	dequeue(queue);
-	printf(isEmpty(queue) ? "correct" : "incorrect");
+	printf(isEmpty(queue) ? "correct\n" : "incorrect\n");
+	enqueue(queue, 8);
+	printQueue(queue);
 	freeQueue(&queue);
 }
