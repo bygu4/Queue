@@ -14,7 +14,7 @@ Queue* createQueue(void)
     return queue;
 }
 
-bool isEmpty(Queue* const queue)
+bool isEmpty(const Queue* const queue)
 {
     return queue->head == NULL && queue->back == NULL;
 }
@@ -56,7 +56,7 @@ void dequeue(Queue* const queue)
     queue->back = next;
 }
 
-int front(Queue* const queue)
+int front(const Queue* const queue)
 {
     QueueNode *head = queue->head;
     if (head == NULL)
@@ -66,7 +66,7 @@ int front(Queue* const queue)
     return head->value;
 }
 
-int back(Queue* const queue)
+int back(const Queue* const queue)
 {
     QueueNode *back = queue->back;
     if (back == NULL)
@@ -76,7 +76,7 @@ int back(Queue* const queue)
     return back->value;
 }
 
-void printQueue(Queue* const queue)
+void printQueue(const Queue* const queue)
 {
     QueueNode* current = (queue)->back;
     while (current != NULL)
