@@ -11,11 +11,11 @@ typedef struct {
 	struct QueueNode* back;
 } Queue;
 
+Queue* createQueue(void);
 bool isEmpty(Queue* const queue);
-void enqueue(Queue* const queue, const int value);
+bool enqueue(Queue* const queue, const int value);
 void dequeue(Queue* const queue);
-int front(Queue *queue);
-int back(Queue *queue);
-void printQueue(Queue* queue)
-  
-
+int front(Queue* const queue);
+int back(Queue* const queue);
+void printQueue(Queue* const queue);
+void freeQueue(const Queue** const queue);
