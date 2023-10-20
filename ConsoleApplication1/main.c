@@ -1,13 +1,25 @@
-﻿#include <stdio.h>
+﻿#include "queue.h"
 #include <stdlib.h>
-#include "queue.h"
+#include <stdio.h>
 
-int main()
+int main(void)
 {
-	Queue* queue = malloc(sizeof(Queue));
+	Queue* queue = createQueue();
+	if (queue == NULL)
+	{
+		printf("An error occured");
+		return -1;
+	}
 	queue->back = NULL;
 	queue->head = NULL;
 	enqueue(queue, 1);
+	printf("%d\n", back(queue));
 	enqueue(queue, 2);
-	printf("%d", queue->head->value);
+	printQueue(queue);
+	dequeue(queue);
+	printf("front: %d\n", front(queue));
+	printf("back: %d\n", back(queue));
+	dequeue(queue);
+	printf(isEmpty(queue) ? "correct" : "incorrect");
+	freeQueue(&queue);
 }
